@@ -1,0 +1,116 @@
+.contribute-header-container{
+    margin-top: 53px;
+}
+
+.contribute-header-row{
+    padding: 130px 24px 130px 24px;
+}
+
+.contribute-header-col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contribute-header-img{
+    width: 50vw;
+    height: auto;
+}
+
+.contribute-header-text{
+    text-align: center;
+    font-size: 3.3vw;
+}
+
+.contribute-form-container{
+    margin-top: 100px;
+    background-image: url(../assets//svgs//writing.svg);
+    background-size: cover;
+}
+
+.contribute-form-row {
+    padding: 24px 24px 24px 500px;
+}
+
+.contribute-form {
+    border-left: solid teal 5px;
+    border-top: solid teal 5px;
+    border-radius: 24px;
+    box-shadow: black 4px 4px 7px;
+    padding: 24px;
+    background-color: rgb(245, 239, 239);
+}
+
+.add-btn-div {
+    display: flex;
+    justify-content: center;
+}
+
+.add-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: teal;
+    color: black;
+    border-radius: 24px;
+    height: 44px;
+    width: 200px;
+    transition: 240ms;
+}
+
+.add-btn:hover{
+    background-color: blue;
+    cursor: pointer;
+    color: white;
+    box-shadow: black 0px 2px 7px;
+}
+
+.form-heading{
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+
+    .contribute-form-row {
+        padding: 0px;
+    }    
+
+    .contribute-form-container{
+        margin-top: 0px;
+        margin-bottom: 24px;
+        background-image: none;
+    }
+
+    .contribute-header-container{
+        margin-top: 100px;
+    }
+    
+    .contribute-header-row{
+        padding: 0px;
+    }
+    
+    .contribute-header-col{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .contribute-header-img{
+        transform: scale(2);
+    }
+    
+    .contribute-header-text{
+        margin-top: 70px;
+        margin-bottom: 40px;
+        text-align: center;
+        font-size: 5.5vw;
+    }
+}

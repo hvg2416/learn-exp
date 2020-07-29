@@ -1,0 +1,147 @@
+.exp-card-div {
+    background-color: #f9f9f9;
+}
+
+.featured-heading-div {
+    text-align: center;
+    background-color: rgb(60, 163, 204);
+    border-radius: 10px;
+    margin: 0px 5px 0px 5px;
+    box-shadow: black 0px 2px 4px;
+}
+
+.featured-heading-text {
+    font-size: 3vw;
+}
+
+.featured-cards-div {
+    padding: 24px;
+}
+
+.featured-card-col {
+    display: flex;
+    justify-content: center;
+}
+
+.featured-cards-div-mobile {
+    display: none;
+}
+
+/*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+
+    .featured-heading-text {
+        font-size: 6vw;
+        margin-top: 11px;
+    }
+
+    .featured-cards-div {
+        display: none;
+    }
+
+    .featured-cards-div-mobile {
+        display: block;
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .featured-card-col-mobile {
+        display: flex;
+        justify-content: center;
+        animation-duration: 0.4s;
+        position: relative;
+    }
+    
+    .featured-cards-slider-mobile-div {
+        display: flex;
+        margin-top: 16px;
+        justify-content: space-between;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .arrow {
+        height: 35px;
+        width: 35px;
+    }
+
+    .arrow-left {
+        transform: rotateY(180deg);
+    }
+
+
+
+    @keyframes slideToRight {
+        0% {
+            right: -100px;
+        }
+        10% {
+            right: -90px;
+        }
+        20% {
+            right: -80px;
+        }
+        30% {
+            right: -70px;
+        }
+        40% {
+            right: -60px;
+        }
+        50% {
+            right: -50px;
+        }
+        60% {
+            right: -40px;
+        }
+        70% {
+            right: -30px;
+        }
+        80% {
+            right: -20px;
+        }
+        90% {
+            right: -10px;
+        }
+        100% {
+            right: 0;
+        }
+    }
+
+    @keyframes slideFromRight {
+
+        0% {
+            left: -100px;
+        }
+        10% {
+            left: -90px;
+        }
+        20% {
+            left: -80px;
+        }
+        30% {
+            left: -70px;
+        }
+        40% {
+            left: -60px;
+        }
+        50% {
+            left: -50px;
+        }
+        60% {
+            left: -40px;
+        }
+        70% {
+            left: -30px;
+        }
+        80% {
+            left: -20px;
+        }
+        90% {
+            left: -10px;
+        }
+        100% {
+            left: 0;
+        }
+    }
+}

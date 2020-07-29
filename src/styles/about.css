@@ -1,0 +1,49 @@
+.about-div {
+    background-image: linear-gradient(to bottom, skyblue, white);
+    margin-top: -30px;
+}
+
+.about-row {
+    margin-top: 80px;
+}
+
+.about-learning-image-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-learning-image {
+    width: 45vw;
+    height: auto;
+}
+
+.about-text-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-text-heading {
+    color: black;
+}
+
+.about-text {
+    font-size: 1.9vw;
+    text-align: right;
+}
+
+/*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+    
+    .about-div {
+        background-image: linear-gradient(to bottom, skyblue, white);
+        margin-top: -80px;
+    }
+
+    .about-text-div {
+        padding-top: 159px;
+    }
+}

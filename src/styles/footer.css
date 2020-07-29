@@ -1,0 +1,29 @@
+.footer {
+    height: 200px;
+    display: flex;
+    background-color: teal;
+}
+
+.footer-row {
+    flex: 1;
+}
+
+.footer-brand-logo-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-brand-logo {
+    margin-bottom: 7px;
+    width: 180px;
+    height: 80px;
+}
+
+.footer-main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

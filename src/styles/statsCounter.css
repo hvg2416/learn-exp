@@ -1,0 +1,14 @@
+.stats-div {
+    background-image: linear-gradient(to bottom, #f9f9f9, white, white , white);
+    padding-top: 50px;
+}
+
+.stats-col h1 {
+    font-size: 8vw;
+}
+
+.stats-col {
+    text-align: center;
+    margin: 0px 11px 0px 11px;
+    border-radius: 24px;
+}

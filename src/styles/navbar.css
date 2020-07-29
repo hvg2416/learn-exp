@@ -1,0 +1,138 @@
+.navbar-desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: skyblue;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+    justify-content: space-between;
+    padding: 16px 24px 16px 30px;
+}
+
+.navbar-desktop-onscroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 1s;
+    box-shadow: black 0px 1px 7px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.logo-navbar {
+    width: 124px;
+    height: auto;
+    transform: scale(1.2);
+}
+
+.navbar-options-div {
+    display: flex;
+    align-items: center;
+}
+
+#scrollToTop {
+    position: fixed;
+    bottom: 11px;
+    right: 24px;
+    z-index: 2;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.navbar-link {
+    margin-left: 7px;
+    margin-right: 7px;
+    border: rgb(10, 10, 172) 1.5px solid;
+    color: black;
+    padding: 7px;
+    border-radius: 7px;
+    transition: 0.2s;
+}
+
+.navbar-link:hover{
+    text-decoration: none;
+    color: teal;
+    background-color: white;
+    transform: scale(1.05);
+}
+
+.navbar-mobile {
+    display: none;
+}
+
+.navBarMobileToggleButton {
+    display: none;
+}
+
+/*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+    
+    .navbar-desktop {
+        display: none;
+    }
+
+    #scrollToTop {
+        transform: scale(3);
+        bottom: 24px;
+    }
+
+    .navBarMobileToggleButtonDiv {
+        display: block;
+        position: fixed;
+        top: 7px;
+        left: 14px;
+        z-index: 2;
+    }
+
+    #openNavbarMobile{
+        color: black;
+        font-size: 30px;
+    }
+
+    #closeNavbarMobile {
+        color: white;
+        font-size: 34px;
+        display: none;
+    }
+
+    .navbartogglebtn {
+        transition: 0.5s;
+    }
+
+    .navbar-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 0;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.93);
+        transition: 0.5s;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .navbar-mobile-link {
+        text-decoration: none;
+        color: white;
+        font-size: 0vw;
+        transition: 0.5s;
+    }
+
+    .navbar-mobile-link:hover {
+        text-decoration: none;
+    }
+
+    .zero-font-size {
+        font-size: 0vw;
+    }
+    
+    .big-font-size {
+        font-size: 11vw;
+    }
+    
+}
