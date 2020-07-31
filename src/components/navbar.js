@@ -4,12 +4,36 @@ import Logo from '../assets/svgs/logo.svg';
 import { RiMenu2Line, RiCloseLine } from 'react-icons/ri';
 import { GrLinkTop } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
+import LoginModal from './loginModal';
 
 class Navbar extends Component {
 
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false
+        };
+        this.logIn = this.logIn.bind(this);
+    }
+
     componentDidMount() {
         setInterval(this.onScroll, 50);
+        if (this.state.isLoggedIn || sessionStorage.getItem('isLoggedIn') === 'true') {
+            let contributeBtn = document.getElementById('contribute-btn');
+            let loginBtn = document.getElementById('login-btn');
+            contributeBtn.style.display = 'block';
+            loginBtn.style.display = 'none';
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.state.isLoggedIn) {
+            let contributeBtn = document.getElementById('contribute-btn');
+            let loginBtn = document.getElementById('login-btn');
+            contributeBtn.style.display = 'block';
+            loginBtn.style.display = 'none';
+        }
     }
 
     onScroll() {
@@ -17,7 +41,7 @@ class Navbar extends Component {
         let scroll2Top = document.getElementById("scrollToTop");
         let pageYOffset = window.pageYOffset;
         let clientHeight = document.documentElement.clientHeight;
-        if (pageYOffset >= clientHeight/3) {
+        if (pageYOffset >= clientHeight / 3) {
             navbar.classList.add("navbar-desktop-onscroll");
             scroll2Top.style.fontSize = "2vw";
         } else {
@@ -54,6 +78,49 @@ class Navbar extends Component {
         document.body.style.overflow = "auto";
     }
 
+    openLogInModal() {
+        let modal = document.getElementById("login-modal");
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    logIn() {
+        let modal = document.getElementById("login-modal");
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+        let loader = document.getElementById('loader-div');
+        loader.style.display = 'block';
+
+        let user = {
+            username: username,
+            password: password
+        };
+
+        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+        let url = "https://learn-exp-server.herokuapp.com/users/login";
+
+        fetch(corsproxyurl + url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then(res => res.json()).then((result) => {
+            modal.style.display = "none";
+            this.setState({
+                ...this.state,
+                isLoggedIn: true
+            });
+            loader.style.display = 'none';
+            sessionStorage.setItem('isLoggedIn', 'true');
+            alert("Success");
+        }).catch((err) => {
+            loader.style.display = 'none';
+            alert(err.message)
+        });
+    }
+
     render() {
         return (
             <>
@@ -67,7 +134,8 @@ class Navbar extends Component {
                         <Link to='/' className="navbar-link">Home</Link>
                         <Link to='/about' className="navbar-link">About Us</Link>
                         <Link to='/contact' className="navbar-link">Contact</Link>
-                        <Link to='/contribute' className="navbar-link">Contribute</Link>
+                        <Link to='/contribute' className="navbar-link" id="contribute-btn">Contribute</Link>
+                        <Link to='#' className="navbar-link" id="login-btn" onClick={this.openLogInModal} >Log In</Link>
                     </div>
                 </div>
                 <div className="navBarMobileToggleButtonDiv">
@@ -87,6 +155,9 @@ class Navbar extends Component {
                         behavior: "smooth"
                     });
                 }} />
+                <div className='container-fluid' id="login-modal">
+                    <LoginModal logIn={this.logIn} />
+                </div>
             </>
         );
     }

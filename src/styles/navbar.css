@@ -65,6 +65,20 @@
     display: none;
 }
 
+#contribute-btn {
+    display: none;
+}
+
+#login-modal {
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+}
+
 /*------------------------------- Media Query-------------------------------------*/
 
 @media only screen and (max-width: 764px){
