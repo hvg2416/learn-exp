@@ -1,4 +1,4 @@
-#loader-div {
+.loader-div {
     display: none;
     margin-left: 11px;
     height: 24px;
@@ -7,4 +7,8 @@
     border: white solid 4px;
     border-right: transparent solid 4px;
     animation: spin 0.5s linear infinite;
+}
+
+.loader-visible {
+    display: block;
 }

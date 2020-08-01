@@ -5,7 +5,7 @@ class Loader extends Component {
 
     render() {
         return (
-            <div id="loader-div"></div>
+            <div className='loader-div'></div>
         );
     }
 }

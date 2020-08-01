@@ -1,8 +1,16 @@
 .login-modal-close-btn-div {
-    
     display: flex;
-    justify-content: flex-end;
-    padding: 11px;
+    padding: 4px;
+}
+
+.close-modal-btn {
+    font-size: 3vw;
+    color: rgba(0, 0, 0, 0.699);
+}
+
+.close-modal-btn:hover{
+    cursor: pointer;
+    color: black;
 }
 
 .login-modal-body {
@@ -29,12 +37,29 @@
 }
 
 .login-modal-body-form-header-row {
-    
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.login-modal-body-form-header-btn-div{
+    margin-right: 24px;
+    width: 100px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 240ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.login-modal-body-form-header-btn-div:hover{
+    cursor: pointer;
+    color: rgb(12, 83, 83);
+    font-weight: bold;
 }
 
 .login-modal-body-form-body-row {
-    
     flex: 6;
     display: flex;
     flex-direction: column;
@@ -59,4 +84,60 @@
 .login-modal-body-form-body-login-btn-div:hover{
     background-color: teal;
     cursor: pointer;
+    box-shadow: black 1px 1px 2px;
+}
+
+.signup-modal-body-form-body-row {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 44px 44px 44px;
+}
+
+.signup-modal-body-form-body-heading-div {
+    
+    margin-bottom: 24px;
+}
+
+.signup-modal-body-name-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-input {
+    width: 20vw;
+}
+
+.signup-modal-body-form-body-register-btn-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    background-color: rgba(0, 128, 128, 0.842);
+    padding: 7px;
+    border-radius: 4px;
+}
+
+.signup-modal-body-form-body-register-btn-div:hover{
+    background-color: teal;
+    cursor: pointer;
+    box-shadow: black 1px 1px 2px;
+}
+
+.input-field {
+    border: none;
+    border-radius: 0px;
+    border-bottom: teal solid 1px;
+    transition: 1s;
+}
+
+.input-field:focus{
+    box-shadow: none;
+    border: teal solid 1.4px;
+    border-radius: 7px;
+    box-shadow: royalblue 0px 0px 4px;
+}
+
+.login-modal-body span::selection{
+    display: none;
 }

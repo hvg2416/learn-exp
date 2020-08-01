@@ -88,8 +88,8 @@ class Navbar extends Component {
         let modal = document.getElementById("login-modal");
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
-        let loader = document.getElementById('loader-div');
-        loader.style.display = 'block';
+        let loader = document.getElementsByClassName('loader-div')[0];
+        loader.classList.add('loader-visible');
 
         let user = {
             username: username,
@@ -112,13 +112,19 @@ class Navbar extends Component {
                 ...this.state,
                 isLoggedIn: true
             });
-            loader.style.display = 'none';
+            loader.classList.remove('loader-visible');
+            document.body.style.overflow = 'auto';
             sessionStorage.setItem('isLoggedIn', 'true');
             alert("Success");
         }).catch((err) => {
             loader.style.display = 'none';
             alert(err.message)
         });
+    }
+
+    signUp(){
+        let loader = document.getElementsByClassName('loader-div')[1];
+        loader.classList.add('loader-visible');
     }
 
     render() {
@@ -156,7 +162,7 @@ class Navbar extends Component {
                     });
                 }} />
                 <div className='container-fluid' id="login-modal">
-                    <LoginModal logIn={this.logIn} />
+                    <LoginModal logIn={this.logIn} signUp={this.signUp} />
                 </div>
             </>
         );
