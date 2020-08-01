@@ -31,7 +31,6 @@
 }
 
 .login-modal-body-form-div {
-    
     display: flex;
     flex-direction: column;
 }
@@ -140,4 +139,52 @@
 
 .login-modal-body span::selection{
     display: none;
+}
+
+/*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+
+    .login-modal-body-img-div{
+        display: none;
+    }
+
+    .close-modal-btn {
+        font-size: 7vw;
+    }
+
+    .login-modal-close-btn-div {
+        padding: 8px;
+    }
+
+    .name-input{
+        width: 36vw;
+    }
+    
+    .input-field:focus{
+        border: none;
+        border-bottom: teal solid 1px;
+        box-shadow: none;
+        border-radius: 0px;
+    }
+
+    .login-modal-body-form-header-row {
+        flex: 0.5;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .login-modal-body-form-div {
+        overflow-y: scroll;
+    }
+
+    .signup-modal-body-info-div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .credential-input {
+        width: 36vw;
+    }
 }

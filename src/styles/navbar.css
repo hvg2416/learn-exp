@@ -149,4 +149,8 @@
         font-size: 11vw;
     }
     
+    #contribute-btn-mobile{
+        display: none;
+    }
+
 }

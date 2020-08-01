@@ -140,13 +140,15 @@ class LoginModal extends Component {
                                     <label htmlFor='email'>Email</label>
                                     <input className='form-control input-field' type='email' id='email'></input>
                                 </div>
-                                <div className='form-group'>
-                                    <label htmlFor='username'>Username</label>
-                                    <input className='form-control input-field' type='text' id='new-username'></input>
-                                </div>
-                                <div className='form-group'>
-                                    <label htmlFor='password'>Password</label>
-                                    <input className='form-control input-field' type='password' id='new-password'></input>
+                                <div className='signup-modal-body-info-div'>
+                                    <div className='form-group'>
+                                        <label htmlFor='new-username'>Username</label>
+                                        <input className='form-control input-field credential-input' type='text' id='new-username'></input>
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor='new-password'>Password</label>
+                                        <input className='form-control input-field credential-input' type='password' id='new-password'></input>
+                                    </div>
                                 </div>
                             </form>
                             <div className='signup-modal-body-form-body-register-btn-div' onClick={this.props.signUp}>

@@ -15,24 +15,33 @@ class Navbar extends Component {
             isLoggedIn: false
         };
         this.logIn = this.logIn.bind(this);
+        this.closeNav = this.closeNav.bind(this);
     }
 
     componentDidMount() {
         setInterval(this.onScroll, 50);
         if (this.state.isLoggedIn || sessionStorage.getItem('isLoggedIn') === 'true') {
             let contributeBtn = document.getElementById('contribute-btn');
+            let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
+            let loginBtnMobile = document.getElementById('login-btn-mobile');
             contributeBtn.style.display = 'block';
+            contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
+            loginBtnMobile.style.display = 'none';
         }
     }
 
     componentDidUpdate() {
         if (this.state.isLoggedIn) {
             let contributeBtn = document.getElementById('contribute-btn');
+            let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
+            let loginBtnMobile = document.getElementById('login-btn-mobile');
             contributeBtn.style.display = 'block';
+            contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
+            loginBtnMobile.style.display = 'none';
         }
     }
 
@@ -79,9 +88,26 @@ class Navbar extends Component {
     }
 
     openLogInModal() {
+        
+        //This is the exact same code of "closeNav" function
+        //It is written again because of some error while calling "closeNav" function here.
+        document.getElementById("navMobile").style.width = "0%";
+        let links = document.getElementsByClassName("navbar-mobile-link");
+        for (let i = 0; i < links.length; i++) {
+            links[i].classList.add("zero-font-size");
+            links[i].classList.remove("big-font-size");
+        }
+        let closeNavBtn = document.getElementById("closeNavbarMobile");
+        let openNavBtn = document.getElementById("openNavbarMobile");
+        openNavBtn.style.display = "block";
+        closeNavBtn.style.display = "none";
+        document.body.style.overflow = "auto";
+
+        //Now the "openLogInModal" begins from here
         let modal = document.getElementById("login-modal");
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+
     }
 
     logIn() {
@@ -122,7 +148,7 @@ class Navbar extends Component {
         });
     }
 
-    signUp(){
+    signUp() {
         let loader = document.getElementsByClassName('loader-div')[1];
         loader.classList.add('loader-visible');
     }
@@ -152,7 +178,8 @@ class Navbar extends Component {
                     <Link to='/' className="navbar-mobile-link" onClick={this.closeNav}>Home</Link>
                     <Link to='/about' className="navbar-mobile-link" onClick={this.closeNav}>About</Link>
                     <Link to='/contact' className="navbar-mobile-link" onClick={this.closeNav}>Contact</Link>
-                    <Link to='/contribute' className="navbar-mobile-link" onClick={this.closeNav}>Contribute</Link>
+                    <Link to='/contribute' className="navbar-mobile-link" onClick={this.closeNav} id='contribute-btn-mobile'>Contribute</Link>
+                    <Link to='#' className="navbar-mobile-link" id="login-btn-mobile" onClick={this.openLogInModal} >Log In</Link>
                 </div>
                 <GrLinkTop id="scrollToTop" onClick={() => {
                     window.scroll({
