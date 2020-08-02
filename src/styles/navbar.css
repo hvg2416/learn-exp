@@ -80,6 +80,25 @@
     background-color: white;
 }
 
+.user-profile-btn-div {
+    border: black solid 1px;
+    display: none;
+    align-items: center;
+}
+
+.user-profile-btn-thumbnail-div {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-image: url('https://n7.nextpng.com/sticker-png/149/1001/sticker-png-computer-icons-user-profile-others-miscellaneous-share-icon-user-profile-user-account-thumbnail.png');
+    background-size: contain;
+    margin-right: 7px;
+}
+
+.user-profile-btn-user-firstname {
+
+}
+
 /*------------------------------- Media Query-------------------------------------*/
 
 @media only screen and (max-width: 764px){

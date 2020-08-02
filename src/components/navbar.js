@@ -5,6 +5,7 @@ import { RiMenu2Line, RiCloseLine } from 'react-icons/ri';
 import { GrLinkTop } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import LoginModal from './loginModal';
+import Loader from './loader';
 
 class Navbar extends Component {
 
@@ -65,7 +66,9 @@ class Navbar extends Component {
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
             let loginBtnMobile = document.getElementById('login-btn-mobile');
-            contributeBtn.style.display = 'block';
+            let userProfileBtn = document.getElementById('user-profile-icon');
+            userProfileBtn.style.display = 'flex';
+            //contributeBtn.style.display = 'block';
             contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
             loginBtnMobile.style.display = 'none';
@@ -79,7 +82,9 @@ class Navbar extends Component {
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
             let loginBtnMobile = document.getElementById('login-btn-mobile');
-            contributeBtn.style.display = 'block';
+            let userProfileBtn = document.getElementById('user-profile-icon');
+            userProfileBtn.style.display = 'flex';
+            //contributeBtn.style.display = 'block';
             contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
             loginBtnMobile.style.display = 'none';
@@ -252,7 +257,7 @@ class Navbar extends Component {
             body: JSON.stringify(new_user)
         }).then(res => res.json()).then((result) => {
             loader.classList.remove('loader-visible');
-            alert("Successfully Registered !!" + "Now, try logging in :-)");
+            alert("Successfully Registered !! Now, try logging in :-)");
         }).catch((err) => {
             loader.style.display = 'none';
             alert(err.message)
@@ -273,6 +278,10 @@ class Navbar extends Component {
                         <Link to='/about' className="navbar-link">About Us</Link>
                         <Link to='/contact' className="navbar-link">Contact</Link>
                         <Link to='/contribute' className="navbar-link" id="contribute-btn">Contribute</Link>
+                        <div className='user-profile-btn-div' id='user-profile-icon'>
+                            <div className='user-profile-btn-thumbnail-div'></div>
+                            <span className='user-profile-btn-user-firstname'> {this.state.loggedInUserInfo.firstname} </span>
+                        </div>
                         <Link to='#' className="navbar-link" id="login-btn" onClick={this.openLogInModal} >Log In</Link>
                     </div>
                 </div>
