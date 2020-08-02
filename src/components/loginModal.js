@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/loginModal.css';
 import LoginSVG from '../assets/svgs/login.svg';
 import Loader from './loader';
-import { FiX } from "react-icons/fi";
+import { FiX, FiEyeOff, FiEye } from "react-icons/fi";
 
 class LoginModal extends Component {
 
@@ -11,10 +11,12 @@ class LoginModal extends Component {
         super(props);
         this.state = {
             isLoginWindowOpened: true,
-            isSignUpWindowOpened: false
+            isSignUpWindowOpened: false,
+            isPasswordHidden: true
         };
         this.openLoginWindow = this.openLoginWindow.bind(this);
         this.openSignUpWindow = this.openSignUpWindow.bind(this);
+        this.togglePasswordVisibilty = this.togglePasswordVisibilty.bind(this);
     }
 
     componentDidMount() {
@@ -58,7 +60,6 @@ class LoginModal extends Component {
     closeLogInModal() {
         let modal = document.getElementById("login-modal");
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
     }
 
     openLoginWindow() {
@@ -79,6 +80,25 @@ class LoginModal extends Component {
                 isLoginWindowOpened: false
             });
         }
+    }
+
+    togglePasswordVisibilty() {
+
+        let passwordField = document.getElementById('password');
+        let newPasswordField = document.getElementById('new-password');
+
+        if (this.state.isPasswordHidden) {
+            passwordField.type = 'text';
+            newPasswordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+            newPasswordField.type = 'password';
+        }
+
+        this.setState({
+            ...this.state,
+            isPasswordHidden: !this.state.isPasswordHidden
+        });
     }
 
     render() {
@@ -112,7 +132,10 @@ class LoginModal extends Component {
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='password'>Password</label>
-                                    <input className='form-control input-field' type='password' id='password'></input>
+                                    <div className='password-input-field-div'>
+                                        <input className='form-control input-field' type='password' id='password'></input>
+                                        <span onClick={this.togglePasswordVisibilty} > {this.state.isPasswordHidden ? <FiEyeOff /> : <FiEye />} </span>
+                                    </div>
                                 </div>
                             </form>
                             <div className='login-modal-body-form-body-login-btn-div' onClick={this.props.logIn}>
@@ -147,7 +170,10 @@ class LoginModal extends Component {
                                     </div>
                                     <div className='form-group'>
                                         <label htmlFor='new-password'>Password</label>
-                                        <input className='form-control input-field credential-input' type='password' id='new-password'></input>
+                                        <div className='password-input-field-div'>
+                                            <input className='form-control input-field credential-input' type='password' id='new-password'></input>
+                                            <span onClick={this.togglePasswordVisibilty} > {this.state.isPasswordHidden ? <FiEyeOff /> : <FiEye />} </span>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

@@ -8,19 +8,59 @@ import LoginModal from './loginModal';
 
 class Navbar extends Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            loggedInUserInfo: {}
         };
         this.logIn = this.logIn.bind(this);
         this.closeNav = this.closeNav.bind(this);
+        this.renewToken = this.renewToken.bind(this);
     }
 
     componentDidMount() {
         setInterval(this.onScroll, 50);
-        if (this.state.isLoggedIn || sessionStorage.getItem('isLoggedIn') === 'true') {
+
+        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+        let verify_url = "https://learn-exp-server.herokuapp.com/users/verify";
+
+        fetch(corsproxyurl + verify_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'bearer ' + localStorage.getItem('jsonWebTokenforLearnX')
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+
+                let user_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
+
+                fetch(corsproxyurl + user_url)
+                    .then(res => res.json())
+                    .then((response) => {
+                        this.setState({
+                            ...this.state,
+                            isLoggedIn: true,
+                            loggedInUserInfo: response
+                        });
+                        this.renewToken(response.username, response.password);
+                    })
+                    .catch((err) => console.log(err));
+
+            } else {
+                this.setState({
+                    ...this.state,
+                    isLoggedIn: false
+                });
+            }
+        }).catch((err) => {
+            console.log(err.message);
+        });
+
+        if (this.state.isLoggedIn) {
+            console.log('hello');
             let contributeBtn = document.getElementById('contribute-btn');
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
@@ -33,6 +73,7 @@ class Navbar extends Component {
     }
 
     componentDidUpdate() {
+
         if (this.state.isLoggedIn) {
             let contributeBtn = document.getElementById('contribute-btn');
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
@@ -88,7 +129,7 @@ class Navbar extends Component {
     }
 
     openLogInModal() {
-        
+
         //This is the exact same code of "closeNav" function
         //It is written again because of some error while calling "closeNav" function here.
         document.getElementById("navMobile").style.width = "0%";
@@ -101,13 +142,38 @@ class Navbar extends Component {
         let openNavBtn = document.getElementById("openNavbarMobile");
         openNavBtn.style.display = "block";
         closeNavBtn.style.display = "none";
-        document.body.style.overflow = "auto";
 
         //Now the "openLogInModal" begins from here
         let modal = document.getElementById("login-modal");
         modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
 
+    }
+
+    renewToken(username, password) {
+        let user = {
+            username: username,
+            password: password
+        };
+
+        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+        let url = "https://learn-exp-server.herokuapp.com/users/login";
+
+        fetch(corsproxyurl + url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then(res => res.json()).then((result) => {
+            this.setState({
+                ...this.state,
+                isLoggedIn: true
+            });
+            localStorage.setItem('jsonWebTokenforLearnX', result.token);
+        }).catch((err) => {
+            alert(err.message)
+        });
     }
 
     logIn() {
@@ -133,24 +199,64 @@ class Navbar extends Component {
             },
             body: JSON.stringify(user)
         }).then(res => res.json()).then((result) => {
+
             modal.style.display = "none";
-            this.setState({
-                ...this.state,
-                isLoggedIn: true
-            });
             loader.classList.remove('loader-visible');
-            document.body.style.overflow = 'auto';
-            sessionStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('jsonWebTokenforLearnX', result.token);
+            let user_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
+
+            fetch(corsproxyurl + user_url)
+                .then(res => res.json())
+                .then((response) => {
+                    this.setState({
+                        ...this.state,
+                        isLoggedIn: true,
+                        loggedInUserInfo: response
+                    })
+                })
+                .catch((err) => console.log(err));
             alert("Success");
         }).catch((err) => {
-            loader.style.display = 'none';
+            loader.classList.remove('loader-visible');
             alert(err.message)
         });
     }
 
     signUp() {
+
+        let username = document.getElementById('new-username').value;
+        let password = document.getElementById('new-password').value;
+        let firstname = document.getElementById('firstname').value;
+        let lastname = document.getElementById('lastname').value;
+        let email = document.getElementById('email').value;
         let loader = document.getElementsByClassName('loader-div')[1];
         loader.classList.add('loader-visible');
+
+        let new_user = {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            username: username,
+            password: password
+        };
+
+        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+        let url = "https://learn-exp-server.herokuapp.com/users/register";
+
+        fetch(corsproxyurl + url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(new_user)
+        }).then(res => res.json()).then((result) => {
+            loader.classList.remove('loader-visible');
+            alert("Successfully Registered !!" + "Now, try logging in :-)");
+        }).catch((err) => {
+            loader.style.display = 'none';
+            alert(err.message)
+        });
     }
 
     render() {

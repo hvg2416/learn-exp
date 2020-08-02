@@ -14,7 +14,6 @@
 }
 
 .login-modal-body {
-    
     flex: 1;
 }
 
@@ -141,6 +140,11 @@
     display: none;
 }
 
+.password-input-field-div {
+    display: flex;  
+    align-items: center;
+}
+
 /*------------------------------- Media Query-------------------------------------*/
 
 @media only screen and (max-width: 764px){
@@ -186,5 +190,9 @@
 
     .credential-input {
         width: 36vw;
+    }
+    
+    .signup-modal-body-form-body-register-btn-div{
+        margin-bottom: 44px;
     }
 }
