@@ -270,6 +270,8 @@ class Navbar extends Component {
             isLoggedIn: false
         });
         localStorage.clear();
+        console.log('Logged Out');
+        window.location.replace('http://localhost:3000/');
     }
 
     render() {
