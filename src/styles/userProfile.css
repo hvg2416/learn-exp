@@ -1,0 +1,51 @@
+.user-profile-container-fluid-div {
+    border: black solid 1px;
+    height: 100vh;
+    margin-top: 53px;
+    display: flex;
+}
+
+.user-profile-container-div {
+    border: black solid 1px;
+    height: 100%;
+    display: flex;
+}
+
+.user-profile-left-menu-div {
+    border: red solid 1px;
+    margin-right: 15px;
+    flex: 1;
+}
+
+.user-profile-main-div {
+    border: rebeccapurple solid 1px;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile-main-div-header-div {
+    border: black solid 1px;
+    flex: 1;
+}
+
+.user-profile-main-div-user-info-div {
+    border: black solid 1px;
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile-info-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-profile-input-field {
+    width: 24vw;
+}
+
+.user-profile-form-groups {
+    margin-right: 24px;
+}

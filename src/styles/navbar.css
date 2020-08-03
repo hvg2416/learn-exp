@@ -81,9 +81,21 @@
 }
 
 .user-profile-btn-div {
-    border: black solid 1px;
     display: none;
+    flex-direction: column;
+    position: relative;
     align-items: center;
+    margin-left: 7px;
+}
+
+.user-profile-btn-div:hover {
+    cursor: pointer;
+}
+
+.user-profile-thumbnail-view-div {
+    display: flex;
+    align-items: center;
+    padding: 0px;
 }
 
 .user-profile-btn-thumbnail-div {
@@ -96,7 +108,33 @@
 }
 
 .user-profile-btn-user-firstname {
+    font-size: medium;
+}
 
+.user-profile-thumbnail-hover-menu-div {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: 6vh;
+    padding: 4px;
+}
+
+.user-profile-btn-div:hover .user-profile-thumbnail-hover-menu-div {
+    display: flex;
+}
+
+.user-profile-thumbnail-links{
+    width: 6.3vw;
+    text-align: center;
+    color: black;
+    font-size: 1vw;
+    margin-top: 2px;
+    background-color: rgba(135, 207, 235, 0.877);
+}
+
+.user-profile-thumbnail-links:hover{
+    color: black;
+    text-decoration: none;
 }
 
 /*------------------------------- Media Query-------------------------------------*/

@@ -6,6 +6,7 @@ import About from './components/about';
 import { Switch, Route } from 'react-router-dom';
 import Footer from './components/footer';
 import Contribute from './components/contribute';
+import UserProfile from './components/userProfile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route path='/about' component={About} />
         <Route path='/contribute' component={Contribute} />
+        <Route path='/profile' component={UserProfile} />
       </Switch>
       <Footer />
     </>

@@ -279,8 +279,15 @@ class Navbar extends Component {
                         <Link to='/contact' className="navbar-link">Contact</Link>
                         <Link to='/contribute' className="navbar-link" id="contribute-btn">Contribute</Link>
                         <div className='user-profile-btn-div' id='user-profile-icon'>
-                            <div className='user-profile-btn-thumbnail-div'></div>
-                            <span className='user-profile-btn-user-firstname'> {this.state.loggedInUserInfo.firstname} </span>
+                            <div className='user-profile-thumbnail-view-div'>
+                                <div className='user-profile-btn-thumbnail-div'></div>
+                                <span className='user-profile-btn-user-firstname'> {this.state.loggedInUserInfo.firstname} </span>
+                            </div>
+                            <div className='user-profile-thumbnail-hover-menu-div'>
+                                <Link to='/profile'className='navbar-link user-profile-thumbnail-links'> My Profile </Link>
+                                <Link to='#'className='navbar-link user-profile-thumbnail-links'> Contribute </Link>
+                                <Link to='#'className='navbar-link user-profile-thumbnail-links'> Log Out </Link>
+                            </div>
                         </div>
                         <Link to='#' className="navbar-link" id="login-btn" onClick={this.openLogInModal} >Log In</Link>
                     </div>
