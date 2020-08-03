@@ -1,51 +1,101 @@
 .user-profile-container-fluid-div {
-    border: black solid 1px;
     height: 100vh;
     margin-top: 53px;
     display: flex;
 }
 
 .user-profile-container-div {
-    border: black solid 1px;
     height: 100%;
     display: flex;
 }
 
 .user-profile-left-menu-div {
-    border: red solid 1px;
     margin-right: 15px;
     flex: 1;
+    background-image: url(../assets/svgs/editProfile.svg);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 .user-profile-main-div {
-    border: rebeccapurple solid 1px;
     flex: 3;
     display: flex;
     flex-direction: column;
 }
 
 .user-profile-main-div-header-div {
-    border: black solid 1px;
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 80px;
+}
+
+.user-profile-main-header-user-bio-div {
+    display: flex;
+    align-items: center;
+    padding-top: 34px;
+}
+
+.user-profile-main-header-user-picture-div {
+    background-image: url('https://n7.nextpng.com/sticker-png/149/1001/sticker-png-computer-icons-user-profile-others-miscellaneous-share-icon-user-profile-user-account-thumbnail.png');
+    background-size: contain;
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    margin-right: 24px;
+}
+
+.user-profile-main-header-user-full-name {
+    font-size: 2vw;
 }
 
 .user-profile-main-div-user-info-div {
-    border: black solid 1px;
     flex: 3;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 64px;
 }
 
 .user-profile-info-div {
     display: flex;
     justify-content: space-between;
+    width: 50vw;
 }
 
 .user-profile-input-field {
-    width: 24vw;
+    width: 20vw;
 }
 
-.user-profile-form-groups {
-    margin-right: 24px;
+.user-profile-form-edit-and-save-btn-div {
+    display: flex;
+    padding: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile-form-edit-and-save-btn {
+    border: none;
+    background-color: teal;
+    color: white;
+    border-radius: 4px;
+    padding: 7px;
+    width: 200px;
+    text-align: center;
+    box-shadow: black .6px .6px 2px;
+}
+
+.user-profile-form-edit-and-save-btn:hover {
+    cursor: pointer;
+    background-color: rgb(24, 116, 116);
+    box-shadow: none
+}
+
+.user-profile-form-edit-and-save-btn::selection{
+    display: none;
+}
+
+#user-profile-form-save-btn {
+    display: none;
 }

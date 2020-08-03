@@ -5,7 +5,7 @@ import { RiMenu2Line, RiCloseLine } from 'react-icons/ri';
 import { GrLinkTop } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import LoginModal from './loginModal';
-import Loader from './loader';
+import FullScreenLoader from './fullScreenLoader';
 
 class Navbar extends Component {
 
@@ -18,6 +18,7 @@ class Navbar extends Component {
         this.logIn = this.logIn.bind(this);
         this.closeNav = this.closeNav.bind(this);
         this.renewToken = this.renewToken.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     componentDidMount() {
@@ -56,13 +57,14 @@ class Navbar extends Component {
                     isLoggedIn: false
                 });
             }
+            document.getElementById('navbar-loader').style.display = 'none';
         }).catch((err) => {
             console.log(err.message);
+            document.getElementById('navbar-loader').style.display = 'none';
         });
 
         if (this.state.isLoggedIn) {
             console.log('hello');
-            let contributeBtn = document.getElementById('contribute-btn');
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
             let loginBtnMobile = document.getElementById('login-btn-mobile');
@@ -76,15 +78,12 @@ class Navbar extends Component {
     }
 
     componentDidUpdate() {
-
         if (this.state.isLoggedIn) {
-            let contributeBtn = document.getElementById('contribute-btn');
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
             let loginBtnMobile = document.getElementById('login-btn-mobile');
             let userProfileBtn = document.getElementById('user-profile-icon');
             userProfileBtn.style.display = 'flex';
-            //contributeBtn.style.display = 'block';
             contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
             loginBtnMobile.style.display = 'none';
@@ -264,9 +263,21 @@ class Navbar extends Component {
         });
     }
 
+    logOut(){
+
+        this.setState({
+            ...this.state,
+            isLoggedIn: false
+        });
+        localStorage.clear();
+    }
+
     render() {
         return (
             <>
+                <div id='navbar-loader'>
+                    <FullScreenLoader />
+                </div>
                 <div className="navbar-desktop">
                     <div className="logo-navbar-div">
                         <Link to='/'>
@@ -284,9 +295,9 @@ class Navbar extends Component {
                                 <span className='user-profile-btn-user-firstname'> {this.state.loggedInUserInfo.firstname} </span>
                             </div>
                             <div className='user-profile-thumbnail-hover-menu-div'>
-                                <Link to='/profile'className='navbar-link user-profile-thumbnail-links'> My Profile </Link>
-                                <Link to='#'className='navbar-link user-profile-thumbnail-links'> Contribute </Link>
-                                <Link to='#'className='navbar-link user-profile-thumbnail-links'> Log Out </Link>
+                                <Link to='/profile' className='navbar-link user-profile-thumbnail-links'> My Profile </Link>
+                                <Link to='#' className='navbar-link user-profile-thumbnail-links'> Contribute </Link>
+                                <Link to='#' onClick={this.logOut} className='navbar-link user-profile-thumbnail-links'> Log Out </Link>
                             </div>
                         </div>
                         <Link to='#' className="navbar-link" id="login-btn" onClick={this.openLogInModal} >Log In</Link>
