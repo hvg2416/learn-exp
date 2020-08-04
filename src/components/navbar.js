@@ -301,7 +301,7 @@ class Navbar extends Component {
                             </div>
                             <div className='user-profile-thumbnail-hover-menu-div'>
                                 <Link to='/profile' className='navbar-link user-profile-thumbnail-links'> My Profile </Link>
-                                <Link to='#' className='navbar-link user-profile-thumbnail-links'> Contribute </Link>
+                                <Link to='/contribute' className='navbar-link user-profile-thumbnail-links'> Contribute </Link>
                                 <Link to='#' onClick={this.logOut} className='navbar-link user-profile-thumbnail-links'> Log Out </Link>
                             </div>
                         </div>

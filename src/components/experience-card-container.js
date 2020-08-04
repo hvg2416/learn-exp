@@ -5,7 +5,7 @@ import Arrow from '../assets/svgs/arrow.svg';
 
 class ExperienceCardContainer extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             loading: true,
@@ -29,14 +29,16 @@ class ExperienceCardContainer extends Component {
     componentDidMount() {
         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/experiences";
-        fetch(corsproxyurl+url)
-        .then((res) => res.json())
-        .then((experiences) => {
-            this.setState({
-                experiences: experiences,
-                loading: false
-            });
-        });
+        fetch(corsproxyurl + url)
+            .then((res) => res.json())
+            .then((experiences) => {
+                if (experiences.length !== 0) {
+                    this.setState({
+                        experiences: experiences,
+                        loading: false
+                    });
+                }
+            }).catch((err) => console.log(err.message));
     }
 
     render() {

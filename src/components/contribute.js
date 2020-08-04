@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 import '../styles/contribute.css';
 import ContributeSVG from '../assets/svgs/contribute.svg';
-import Loader from './loader';
+import SmallLoader from './smallLoader';
 
 class Contribute extends Component {
 
 
+    constructor(props){
+        super(props);
+        this.sendData = this.sendData.bind(this);
+    }
+
+    componentDidMount() {
+        if (!localStorage.getItem('jsonWebTokenforLearnX')) {
+            localStorage.clear();
+            window.location.replace('http://localhost:3000/');
+        }
+    }
+
     sendData() {
-        let loader = document.getElementById("loader-div");
+
+        let loader = document.getElementById('contribute-btn-loader');
         loader.style.display = "block";
         let companyInput = document.getElementById("companyName");
         let jobTypeInput = document.getElementById("jobType");
@@ -26,13 +39,14 @@ class Contribute extends Component {
         };
 
         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
-        let url = "https://learn-exp-server.herokuapp.com/experiences";
+        let url = "https://learn-exp-server.herokuapp.com/experiences/" + localStorage.getItem('jsonWebTokenforLearnX');
 
         fetch(corsproxyurl + url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('jsonWebTokenforLearnX')
             },
             body: JSON.stringify(experience)
         }).then(res => res.json()).then((result) => {
@@ -87,7 +101,9 @@ class Contribute extends Component {
                                 <div className="add-btn-div">
                                     <div className="add-btn" onClick={this.sendData}>
                                         <span className="add-btn-text">Add Experience</span>
-                                        <Loader />
+                                        <div id='contribute-btn-loader'>
+                                            <SmallLoader />
+                                        </div>
                                     </div>
                                 </div>
                             </form>
