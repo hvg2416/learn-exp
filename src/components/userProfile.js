@@ -13,23 +13,28 @@ class UserProfile extends Component {
 
     componentDidMount() {
 
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
-        let user_profile_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
-        let profile_screen_loader = document.getElementById('profile-screen-loader');
+        if (!localStorage.getItem('jsonWebTokenforLearnX')) {
+            localStorage.clear();
+            window.location.replace('http://localhost:3000/');
+        } else {
+            let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+            let user_profile_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
+            let profile_screen_loader = document.getElementById('profile-screen-loader');
 
-        fetch(corsproxyurl + user_profile_url)
-            .then(res => res.json())
-            .then((user_info) => {
-                this.setState({
-                    ...this.state,
-                    userInfo: user_info
+            fetch(corsproxyurl + user_profile_url)
+                .then(res => res.json())
+                .then((user_info) => {
+                    this.setState({
+                        ...this.state,
+                        userInfo: user_info
+                    });
+                    profile_screen_loader.style.display = 'none';
+                })
+                .catch((err) => {
+                    console.log(err)
+                    profile_screen_loader.style.display = 'none';
                 });
-                profile_screen_loader.style.display = 'none';
-            })
-            .catch((err) => {
-                console.log(err)
-                profile_screen_loader.style.display = 'none';
-            });
+        }
     }
 
     render() {

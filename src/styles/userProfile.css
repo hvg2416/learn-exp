@@ -35,6 +35,7 @@
 .user-profile-main-header-user-bio-div {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-top: 34px;
 }
 
@@ -98,4 +99,44 @@
 
 #user-profile-form-save-btn {
     display: none;
+}
+
+/*------------------------------- Media Query-------------------------------------*/
+
+@media only screen and (max-width: 764px){
+
+    .user-profile-left-menu-div {
+        display: none;
+    }
+
+    .user-profile-info-div {
+        border: black solid 1px;
+        width: 80vw;
+        display: block;
+    }
+    
+    .user-profile-input-field {
+        width: 100%;
+    }
+
+    .user-profile-main-header-user-full-name {
+        font-size: 5vw;
+    }
+
+    .user-profile-main-header-user-picture-div {
+        height: 75px;
+        width: 75px;
+    }
+
+    .user-profile-main-div-header-div {
+        border: black solid 1px;
+        flex: 0.5;
+    }
+    
+    .user-profile-main-header-user-bio-div {
+        border: black solid 1px;
+        margin-left: -16vw;
+        width: 100%;
+        height: 100%;
+    }
 }

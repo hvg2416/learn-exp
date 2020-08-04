@@ -7,12 +7,13 @@
     margin-top: -24px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .fullscreen-loader-loading-div {
     height: 70px;
     width: 70px;
+    position: relative;
+    top: 50vh;
     border-radius: 50%;
     border: teal solid 6px;
     border-right: white solid 6px;

@@ -204,7 +204,7 @@
     }
     
     .big-font-size {
-        font-size: 11vw;
+        font-size: 7vw;
     }
     
     #contribute-btn-mobile{
@@ -215,4 +215,11 @@
         overflow-y: scroll;
     }
 
+    #logout-btn-mobile {
+        display: none;
+    }
+
+    #profile-btn-mobile {
+        display: none;
+    }
 }

@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import Footer from './components/footer';
 import Contribute from './components/contribute';
 import UserProfile from './components/userProfile';
+import DefaultError from './components/defaultERROR';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/about' component={About} />
         <Route path='/contribute' component={Contribute} />
         <Route path='/profile' component={UserProfile} />
+        <Route component={DefaultError} />
       </Switch>
       <Footer />
     </>

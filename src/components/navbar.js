@@ -81,12 +81,16 @@ class Navbar extends Component {
         if (this.state.isLoggedIn) {
             let contributeBtnMobile = document.getElementById('contribute-btn-mobile');
             let loginBtn = document.getElementById('login-btn');
+            let logOutBtnMobile = document.getElementById('logout-btn-mobile');
             let loginBtnMobile = document.getElementById('login-btn-mobile');
             let userProfileBtn = document.getElementById('user-profile-icon');
+            let userProfileBtnMobile = document.getElementById('profile-btn-mobile');
             userProfileBtn.style.display = 'flex';
+            userProfileBtnMobile.style.display = 'block';
             contributeBtnMobile.style.display = 'block';
             loginBtn.style.display = 'none';
             loginBtnMobile.style.display = 'none';
+            logOutBtnMobile.style.display = 'block';
         }
     }
 
@@ -270,7 +274,6 @@ class Navbar extends Component {
             isLoggedIn: false
         });
         localStorage.clear();
-        console.log('Logged Out');
         window.location.replace('http://localhost:3000/');
     }
 
@@ -310,11 +313,13 @@ class Navbar extends Component {
                     <RiCloseLine onClick={this.closeNav} id="closeNavbarMobile" className="navbartogglebtn" />
                 </div>
                 <div className="navbar-mobile" id="navMobile">
+                    <Link to='/profile' className="navbar-mobile-link" id='profile-btn-mobile' onClick={this.closeNav}>My Profile</Link>
                     <Link to='/' className="navbar-mobile-link" onClick={this.closeNav}>Home</Link>
                     <Link to='/about' className="navbar-mobile-link" onClick={this.closeNav}>About</Link>
                     <Link to='/contact' className="navbar-mobile-link" onClick={this.closeNav}>Contact</Link>
                     <Link to='/contribute' className="navbar-mobile-link" onClick={this.closeNav} id='contribute-btn-mobile'>Contribute</Link>
                     <Link to='#' className="navbar-mobile-link" id="login-btn-mobile" onClick={this.openLogInModal} >Log In</Link>
+                    <Link to='#' className="navbar-mobile-link" id="logout-btn-mobile" onClick={this.logOut} >Log Out</Link>
                 </div>
                 <GrLinkTop id="scrollToTop" onClick={() => {
                     window.scroll({
