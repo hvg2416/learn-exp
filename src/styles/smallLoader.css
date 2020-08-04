@@ -1,15 +1,8 @@
-.loader-div {
-    display: none;
-    margin-left: 11px;
+.small-loader {
     height: 24px;
     width: 24px;
     border-radius: 50%;
     border: white solid 4px;
     border-right: transparent solid 4px;
     animation: spin 0.5s linear infinite;
-    z-index: 4;
-}
-
-.loader-visible {
-    display: block;
 }

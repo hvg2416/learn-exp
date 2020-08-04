@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import '../styles/userProfile.css';
 import FullScreenLoader from './fullScreenLoader';
+import SmallLoader from './smallLoader';
 
 class UserProfile extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: {}
+            userInfo: {
+                firstname: '',
+                lastname: '',
+                email: '',
+                username: ''
+            },
+            isUserInfoNonEditable: true
         };
+        this.toggleEdit_SaveButton = this.toggleEdit_SaveButton.bind(this);
+        this.handleUserInfoInputChange = this.handleUserInfoInputChange.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +46,88 @@ class UserProfile extends Component {
         }
     }
 
+    toggleEdit_SaveButton(e) {
+
+        let save_edit_btn_loader = document.getElementById('btn-loader-save-and-edit');
+        let editBtn = document.getElementById('user-profile-form-edit-btn');
+        let saveBtn = document.getElementById('user-profile-form-save-btn');
+        if (e.target.id === 'user-profile-form-edit-btn') {
+            this.setState({
+                ...this.state,
+                isUserInfoNonEditable: false
+            });
+            editBtn.style.display = 'none';
+            saveBtn.style.display = 'flex';
+        } else {
+            save_edit_btn_loader.style.display = 'block';
+            let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+            let user_profile_update_url = 'https://learn-exp-server.herokuapp.com/users/update/' + localStorage.getItem('jsonWebTokenforLearnX');
+
+            let updatedUserInfo = {
+                "firstname": this.state.userInfo.firstname,
+                "lastname": this.state.userInfo.lastname
+            };
+
+            fetch(corsproxyurl + user_profile_update_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('jsonWebTokenforLearnX')
+                },
+                body: JSON.stringify(updatedUserInfo)
+            }).then(res => res.json())
+                .then((result) => {
+                    this.setState({
+                        ...this.state,
+                        isUserInfoNonEditable: true
+                    });
+                    save_edit_btn_loader.style.display = 'none';
+                    editBtn.style.display = 'block';
+                    saveBtn.style.display = 'none';
+                })
+                .catch(err => console.log(err.message));
+        }
+    }
+
+    handleUserInfoInputChange(e) {
+        let input_field_id = e.target.id;
+        if (input_field_id === 'user-firstname') {
+            this.setState({
+                ...this.state,
+                userInfo: {
+                    ...this.state.userInfo,
+                    firstname: e.target.value
+                },
+            });
+        } else if (input_field_id === 'user-lastname') {
+            this.setState({
+                ...this.state,
+                userInfo: {
+                    ...this.state.userInfo,
+                    lastname: e.target.value
+                },
+            });
+        }
+        else if (input_field_id === 'user-email') {
+            this.setState({
+                ...this.state,
+                userInfo: {
+                    ...this.state.userInfo,
+                    email: e.target.value
+                },
+            });
+        } else if (input_field_id === 'user-username') {
+            this.setState({
+                ...this.state,
+                userInfo: {
+                    ...this.state.userInfo,
+                    username: e.target.value
+                },
+            });
+        }
+    }
+
     render() {
 
         return (
@@ -59,29 +150,33 @@ class UserProfile extends Component {
                                     <div className='form-group user-profile-info-div'>
                                         <div className='user-profile-form-groups'>
                                             <label htmlFor='user-firstname'>First Name</label>
-                                            <input value={this.state.userInfo.firstname} type='text' className='form-control user-profile-input-field' id='user-firstname' disabled></input>
+                                            <input onChange={this.handleUserInfoInputChange} value={this.state.userInfo.firstname} type='text' className='form-control user-profile-input-field' id='user-firstname' disabled={this.state.isUserInfoNonEditable}></input>
                                         </div>
                                         <div className='user-profile-form-groups'>
                                             <label htmlFor='user-lastname'>Last Name</label>
-                                            <input value={this.state.userInfo.lastname} type='text' className='form-control user-profile-input-field' id='user-lastname' disabled></input>
+                                            <input onChange={this.handleUserInfoInputChange} value={this.state.userInfo.lastname} type='text' className='form-control user-profile-input-field' id='user-lastname' disabled={this.state.isUserInfoNonEditable}></input>
                                         </div>
                                     </div>
                                     <div className='form-group user-profile-info-div'>
                                         <div className='user-profile-form-groups'>
                                             <label htmlFor='user-email'>Email</label>
-                                            <input value={this.state.userInfo.email} type='text' className='form-control user-profile-input-field' id='user-email' disabled></input>
+                                            <input onChange={this.handleUserInfoInputChange} value={this.state.userInfo.email} type='text' className='form-control user-profile-input-field' id='user-email' disabled></input>
                                         </div>
                                         <div className='user-profile-form-groups'>
                                             <label htmlFor='user-username'>Username</label>
-                                            <input value={this.state.userInfo.username} type='text' className='form-control user-profile-input-field' id='user-username' disabled></input>
+                                            <input onChange={this.handleUserInfoInputChange} value={this.state.userInfo.username} type='text' className='form-control user-profile-input-field' id='user-username' disabled></input>
                                         </div>
                                     </div>
                                     <div className='user-profile-form-edit-and-save-btn-div'>
                                         <div className='user-profile-form-edit-btn-div'>
-                                            <div className='user-profile-form-edit-and-save-btn' id='user-profile-form-edit-btn'>Edit Info</div>
+                                            <div onClick={this.toggleEdit_SaveButton} className='user-profile-form-edit-and-save-btn' id='user-profile-form-edit-btn'>Edit Info</div>
                                         </div>
                                         <div className='user-profile-form-save-btn-div'>
-                                            <div className='user-profile-form-edit-and-save-btn' id='user-profile-form-save-btn'>Save</div>
+                                            <div onClick={this.toggleEdit_SaveButton} className='user-profile-form-edit-and-save-btn' id='user-profile-form-save-btn'>Save
+                                                <div id='btn-loader-save-and-edit'>
+                                                    <SmallLoader />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>

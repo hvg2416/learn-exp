@@ -99,7 +99,14 @@
 
 #user-profile-form-save-btn {
     display: none;
+    justify-content: center;
 }
+
+#btn-loader-save-and-edit {
+    display: none;
+    margin-left: 16px;
+}
+
 
 /*------------------------------- Media Query-------------------------------------*/
 
