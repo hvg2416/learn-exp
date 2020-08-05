@@ -1,0 +1,27 @@
+.explore-header-div {
+    height: 70vh;
+    margin-top: 53px;
+    background-image: url('../assets//svgs/explore.svg');
+    background-position: top;
+    background-size: top
+    ;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 24px;
+}
+
+.explore-header-heading-text {
+    font-size: 6.6vw;
+}
+
+.explore-body-div {
+    padding: 24px;
+}
+
+.explore-body-experience-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
