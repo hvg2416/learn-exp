@@ -155,7 +155,7 @@ class UserProfile extends Component {
                             <div className='col user-profile-main-div-header-div'>
                                 <div className='user-profile-main-header-user-bio-div'>
                                     <div className='user-profile-main-header-user-picture-div'>
-                                        <img alt="User Profile Pic" src={this.state.userInfo.thumbnail}></img>
+                                        <img alt="User Profile Pic" src={this.state.userInfo.thumbnail} style={{height: "240px", width: '240px', borderRadius: '50%'}}></img>
                                     </div>
                                     <input onChange={this.handleUserInfoInputChange} type='file' id='user-profile-image'></input>
                                     <span className='user-profile-main-header-user-full-name'> {`${this.state.userInfo.firstname} ${this.state.userInfo.lastname}`} </span>
