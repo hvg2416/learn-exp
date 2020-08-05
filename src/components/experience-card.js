@@ -23,7 +23,7 @@ class ExperienceCard extends Component {
                 </div>
                 <div className="card-desc">
                     <h5>Description</h5>
-                    <p>{this.props.experience.description.slice(0, 25)}</p>
+                    <p>{this.props.experience.description.slice(0, 270) + "..."}</p>
                 </div>
             </div>
         );

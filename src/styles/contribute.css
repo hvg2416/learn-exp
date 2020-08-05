@@ -50,19 +50,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: teal;
+    background-color: rgba(0, 128, 128, 0.822);
     color: black;
     border-radius: 24px;
     height: 44px;
     width: 200px;
     transition: 240ms;
+    box-shadow: black 1px 1px 2px;
 }
 
 .add-btn:hover{
-    background-color: blue;
+    background-color: teal;
     cursor: pointer;
-    color: white;
-    box-shadow: black 0px 2px 7px;
+    box-shadow: none;
 }
 
 .form-heading{

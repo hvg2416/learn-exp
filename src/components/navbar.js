@@ -292,7 +292,7 @@ class Navbar extends Component {
                     <div className="navbar-options-div">
                         <Link to='/' className="navbar-link">Home</Link>
                         <Link to='/about' className="navbar-link">About Us</Link>
-                        <Link to='/contact' className="navbar-link">Contact</Link>
+                        <Link to='/explore' className="navbar-link">Explore</Link>
                         <Link to='/contribute' className="navbar-link" id="contribute-btn">Contribute</Link>
                         <div className='user-profile-btn-div' id='user-profile-icon'>
                             <div className='user-profile-thumbnail-view-div'>

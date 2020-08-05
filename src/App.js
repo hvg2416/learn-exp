@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import Contribute from './components/contribute';
 import UserProfile from './components/userProfile';
 import DefaultError from './components/defaultERROR';
+import Explore from './components/explore';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' component={About} />
         <Route path='/contribute' component={Contribute} />
         <Route path='/profile' component={UserProfile} />
+        <Route path='/explore' component={Explore} />
         <Route component={DefaultError} />
       </Switch>
       <Footer />

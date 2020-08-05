@@ -117,7 +117,6 @@
     }
 
     .user-profile-info-div {
-        border: black solid 1px;
         width: 80vw;
         display: block;
     }
@@ -136,14 +135,13 @@
     }
 
     .user-profile-main-div-header-div {
-        border: black solid 1px;
         flex: 0.5;
     }
     
     .user-profile-main-header-user-bio-div {
-        border: black solid 1px;
-        margin-left: -16vw;
-        width: 100%;
+        display: flex;
+        padding-top: 0px;
         height: 100%;
+        margin-left: -16vw;
     }
 }
