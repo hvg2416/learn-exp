@@ -274,7 +274,7 @@ class Navbar extends Component {
             isLoggedIn: false
         });
         localStorage.clear();
-        window.location.replace('http://localhost:3000/');
+        window.location.replace('https://learnx.netlify.app/');
     }
 
     render() {
