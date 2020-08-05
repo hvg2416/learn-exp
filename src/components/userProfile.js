@@ -12,7 +12,8 @@ class UserProfile extends Component {
                 firstname: '',
                 lastname: '',
                 email: '',
-                username: ''
+                username: '',
+                thumbnail: ''
             },
             isUserInfoNonEditable: true
         };
@@ -38,6 +39,7 @@ class UserProfile extends Component {
                         userInfo: user_info
                     });
                     profile_screen_loader.style.display = 'none';
+                    console.log(user_info);
                 })
                 .catch((err) => {
                     console.log(err)
@@ -63,30 +65,32 @@ class UserProfile extends Component {
             let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
             let user_profile_update_url = 'https://learn-exp-server.herokuapp.com/users/update/' + localStorage.getItem('jsonWebTokenforLearnX');
 
-            let updatedUserInfo = {
-                "firstname": this.state.userInfo.firstname,
-                "lastname": this.state.userInfo.lastname
-            };
+            let formData = new FormData();
+            let userProfileImageInput = document.getElementById('user-profile-image');
+            formData.append('firstname', this.state.userInfo.firstname);
+            formData.append('lastname', this.state.userInfo.lastname);
+            formData.append('userImage', userProfileImageInput.files[0]);
 
             fetch(corsproxyurl + user_profile_update_url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('jsonWebTokenforLearnX')
                 },
-                body: JSON.stringify(updatedUserInfo)
+                body: formData
             }).then(res => res.json())
                 .then((result) => {
                     this.setState({
                         ...this.state,
                         isUserInfoNonEditable: true
                     });
+                })
+                .catch(err => console.log(err.message))
+                .finally(() => {
                     save_edit_btn_loader.style.display = 'none';
                     editBtn.style.display = 'block';
                     saveBtn.style.display = 'none';
-                })
-                .catch(err => console.log(err.message));
+                });
         }
     }
 
@@ -126,6 +130,15 @@ class UserProfile extends Component {
                 },
             });
         }
+        else if (input_field_id === 'user-profile-image') {
+            this.setState({
+                ...this.state,
+                userInfo: {
+                    ...this.state.userInfo,
+                    userProfileImage: e.target.value
+                },
+            });
+        }
     }
 
     render() {
@@ -141,7 +154,10 @@ class UserProfile extends Component {
                         <div className='row user-profile-main-div'>
                             <div className='col user-profile-main-div-header-div'>
                                 <div className='user-profile-main-header-user-bio-div'>
-                                    <div className='user-profile-main-header-user-picture-div'></div>
+                                    <div className='user-profile-main-header-user-picture-div'>
+                                        <img alt="User Profile Pic" src={this.state.userInfo.thumbnail}></img>
+                                    </div>
+                                    <input onChange={this.handleUserInfoInputChange} type='file' id='user-profile-image'></input>
                                     <span className='user-profile-main-header-user-full-name'> {`${this.state.userInfo.firstname} ${this.state.userInfo.lastname}`} </span>
                                 </div>
                             </div>
