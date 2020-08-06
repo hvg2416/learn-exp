@@ -27,11 +27,11 @@ class UserProfile extends Component {
             localStorage.clear();
             window.location.replace('https://learnx.netlify.app/');
         } else {
-            let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+            //let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
             let user_profile_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
             let profile_screen_loader = document.getElementById('profile-screen-loader');
 
-            fetch(corsproxyurl + user_profile_url)
+            fetch(/* corsproxyurl + */ user_profile_url)
                 .then(res => res.json())
                 .then((user_info) => {
                     this.setState({
@@ -62,7 +62,7 @@ class UserProfile extends Component {
             saveBtn.style.display = 'flex';
         } else {
             save_edit_btn_loader.style.display = 'block';
-            let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+            /* let corsproxyurl = "https://cors-anywhere.herokuapp.com/"; */
             let user_profile_update_url = 'https://learn-exp-server.herokuapp.com/users/update/' + localStorage.getItem('jsonWebTokenforLearnX');
 
             let formData = new FormData();
@@ -71,7 +71,7 @@ class UserProfile extends Component {
             formData.append('lastname', this.state.userInfo.lastname);
             formData.append('userImage', userProfileImageInput.files[0]);
 
-            fetch(corsproxyurl + user_profile_update_url, {
+            fetch(/* corsproxyurl +  */user_profile_update_url, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
