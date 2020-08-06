@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/userProfile.css';
 import FullScreenLoader from './fullScreenLoader';
 import SmallLoader from './smallLoader';
+import { MdEdit } from 'react-icons/md';
 
 class UserProfile extends Component {
 
@@ -155,9 +156,10 @@ class UserProfile extends Component {
                             <div className='col user-profile-main-div-header-div'>
                                 <div className='user-profile-main-header-user-bio-div'>
                                     <div className='user-profile-main-header-user-picture-div'>
-                                        <img alt="User Profile Pic" src={this.state.userInfo.thumbnail} style={{height: "240px", width: '240px', borderRadius: '50%'}}></img>
+                                        <img alt="User Profile Pic" src={this.state.userInfo.thumbnail} className='user-profile-main-header-user-image' ></img>
+                                        <label id='user-profile-image-input-label' htmlFor='user-profile-image'> <MdEdit /> </label>
+                                        <input onChange={this.handleUserInfoInputChange} className='user-profile-image-input' type='file' id='user-profile-image' disabled={this.state.isUserInfoNonEditable}></input>
                                     </div>
-                                    <input onChange={this.handleUserInfoInputChange} type='file' id='user-profile-image'></input>
                                     <span className='user-profile-main-header-user-full-name'> {`${this.state.userInfo.firstname} ${this.state.userInfo.lastname}`} </span>
                                 </div>
                             </div>

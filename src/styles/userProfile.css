@@ -34,21 +34,47 @@
 
 .user-profile-main-header-user-bio-div {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 34px;
+    margin-top: 6vw;
+    flex: 1;
+    justify-content: space-evenly;
 }
 
 .user-profile-main-header-user-picture-div {
-    background-size: contain;
-    width: 124px;
-    height: 124px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.user-profile-main-header-user-image {
+    height: 140px;
+    width: 140px;
     border-radius: 50%;
-    margin-right: 24px;
+}
+
+.user-profile-image-input {
+    display: none;
+}
+
+#user-profile-image-input-label {
+    font-size: 1.8vw;
+    position: absolute;
+    right: -16px;
+    color: grey;
+    bottom: -10px;
+    transform: rotateZ(-14deg);
+}
+
+#user-profile-image-input-label:hover{
+    cursor: pointer;
+    color: teal;
 }
 
 .user-profile-main-header-user-full-name {
     font-size: 2vw;
+    display: flex;
+    align-items: center;
+    margin-left: 7vw;
 }
 
 .user-profile-main-div-user-info-div {
