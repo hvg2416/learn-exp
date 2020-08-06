@@ -38,10 +38,10 @@ class Contribute extends Component {
             description: description
         };
 
-        // let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/experiences/" + localStorage.getItem('jsonWebTokenforLearnX');
 
-        fetch(/* corsproxyurl + */url, {
+        fetch(corsproxyurl + url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
