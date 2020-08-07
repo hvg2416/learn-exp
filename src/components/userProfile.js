@@ -95,7 +95,7 @@ class UserProfile extends Component {
                     .then((result) => {
                         console.log('User Profile After Update: ');
                         console.log(result);
-                        let imgBBAPIFormData = FormData();
+                        let imgBBAPIFormData = new FormData();
                         imgBBAPIFormData.append('image', result.thumbnail);
                         console.log('Before imgBB API Fetch Call');
                         fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
