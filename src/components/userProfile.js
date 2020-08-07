@@ -26,7 +26,7 @@ class UserProfile extends Component {
 
         if (!localStorage.getItem('jsonWebTokenforLearnX')) {
             localStorage.clear();
-            window.location.replace('http://localhost:3000/');
+            window.location.replace('https://learnx.netlify.app/');
         } else {
             let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
             let user_profile_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
