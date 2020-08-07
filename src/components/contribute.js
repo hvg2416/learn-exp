@@ -14,7 +14,7 @@ class Contribute extends Component {
     componentDidMount() {
         if (!localStorage.getItem('jsonWebTokenforLearnX')) {
             localStorage.clear();
-            window.location.replace('https://learnx.netlify.app/');
+            window.location.replace('http://localhost:3000/');
         }
     }
 
