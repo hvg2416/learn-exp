@@ -26,7 +26,7 @@ class UserProfile extends Component {
 
         if (!localStorage.getItem('jsonWebTokenforLearnX')) {
             localStorage.clear();
-            window.location.replace('http://localhost:3000/');
+            window.location.replace('https://learnx.netlify.app/');
         } else {
             let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
             let user_profile_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
@@ -81,10 +81,19 @@ class UserProfile extends Component {
                 body: formData
             }).then(res => res.json())
                 .then((result) => {
+                    console.log(result);
                     this.setState({
                         ...this.state,
                         isUserInfoNonEditable: true
                     });
+
+/*                     let image = new FormData();
+                    image.append('image',)
+
+                    fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
+                        method: 'POST',
+                        body: 
+                    }) */
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
