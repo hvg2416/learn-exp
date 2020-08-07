@@ -112,12 +112,15 @@ class UserProfile extends Component {
                                     let bodyData = {
                                         thumbnail: result.data.display_url
                                     };
+
                                     fetch(corsproxyurl + user_thumbnail_update_url, {
                                         method: 'POST',
-                                        body: JSON.stringify(bodyData),
                                         headers: {
-                                            'Authorization': `bearer ${localStorage.getItem('jsonWebTokenforLearnX')}`
-                                        }
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json',
+                                            'Authorization': 'Bearer ' + localStorage.getItem('jsonWebTokenforLearnX')
+                                        },
+                                        body: JSON.stringify(bodyData)
                                     }).then(res => res.json())
                                         .then((response) => {
                                             console.log('Updated imgBB API url to database : ');
