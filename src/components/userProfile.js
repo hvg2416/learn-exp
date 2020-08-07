@@ -86,7 +86,7 @@ class UserProfile extends Component {
                         isUserInfoNonEditable: true
                     });
                 })
-                .catch(err => console.log(err.message))
+                .catch(err => console.log(err))
                 .finally(() => {
                     save_edit_btn_loader.style.display = 'none';
                     editBtn.style.display = 'block';
