@@ -109,10 +109,14 @@ class UserProfile extends Component {
 
                                     let user_thumbnail_update_url = `https://learn-exp-server.herokuapp.com/users/update_user_thumbnail_url/${localStorage.getItem('jsonWebTokenforLearnX')}`;
 
+                                    let bodyData = {
+                                        thumbnail: result.data.display_url
+                                    };
                                     fetch(corsproxyurl + user_thumbnail_update_url, {
                                         method: 'POST',
-                                        body: {
-                                            thumbnail: result.data.display_url
+                                        body: JSON.stringify(bodyData),
+                                        headers: {
+                                            'Authorization': `bearer ${localStorage.getItem('jsonWebTokenforLearnX')}`
                                         }
                                     }).then(res => res.json())
                                         .then((response) => {
