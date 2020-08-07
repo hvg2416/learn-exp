@@ -95,8 +95,19 @@ class UserProfile extends Component {
                     .then((result) => {
                         console.log('User Profile After Update: ');
                         console.log(result);
-                    });
-                    
+                        let imgBBAPIFormData = FormData();
+                        imgBBAPIFormData.append('image', result.thumbnail);
+                        fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
+                            method: 'POST',
+                            body: imgBBAPIFormData
+                        })
+                        .then(res => res.json())
+                        .then((result) => {
+                            console.log('Uploaded Image to IMBB API Service : ');
+                            console.log(result);
+                        }).catch((err) => console.log(err));
+                    }).catch((err) => console.log(err));
+
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
