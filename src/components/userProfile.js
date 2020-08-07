@@ -91,24 +91,38 @@ class UserProfile extends Component {
                     let user_url = `https://learn-exp-server.herokuapp.com/users/${localStorage.getItem('jsonWebTokenforLearnX')}`;
 
                     fetch(corsproxyurl + user_url)
-                    .then((res) => res.json())
-                    .then((result) => {
-                        console.log('User Profile After Update: ');
-                        console.log(result);
-                        let imgBBAPIFormData = new FormData();
-                        imgBBAPIFormData.append('image', result.thumbnail);
-                        console.log('Before imgBB API Fetch Call');
-                        fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
-                            method: 'POST',
-                            body: imgBBAPIFormData
-                        })
-                        .then(res => res.json())
+                        .then((res) => res.json())
                         .then((result) => {
-                            console.log('Uploaded Image to IMBB API Service : ');
+                            console.log('User Profile After Update: ');
                             console.log(result);
+                            let imgBBAPIFormData = new FormData();
+                            imgBBAPIFormData.append('image', result.thumbnail);
+                            console.log('Before imgBB API Fetch Call');
+                            fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
+                                method: 'POST',
+                                body: imgBBAPIFormData
+                            })
+                                .then(res => res.json())
+                                .then((result) => {
+                                    console.log('Uploaded Image to IMBB API Service : ');
+                                    console.log(result);
+
+                                    let user_thumbnail_update_url = `https://learn-exp-server.herokuapp.com/users/update_user_thumbnail_url/${localStorage.getItem('jsonWebTokenforLearnX')}`;
+
+                                    fetch(corsproxyurl + user_thumbnail_update_url, {
+                                        method: 'POST',
+                                        body: {
+                                            thumbnail: result.data.display_url
+                                        }
+                                    }).then(res => res.json())
+                                        .then((response) => {
+                                            console.log('Updated imgBB API url to database : ');
+                                            console.log(response);
+                                        }).catch((err) => console.log(err));
+
+                                }).catch((err) => console.log(err));
+                            console.log('After imgBB API Fetch Call');
                         }).catch((err) => console.log(err));
-                        console.log('After imgBB API Fetch Call');
-                    }).catch((err) => console.log(err));
 
                 })
                 .catch(err => console.log(err))
