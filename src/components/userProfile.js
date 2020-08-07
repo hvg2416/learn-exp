@@ -87,13 +87,16 @@ class UserProfile extends Component {
                         isUserInfoNonEditable: true
                     });
 
-/*                     let image = new FormData();
-                    image.append('image',)
+                    let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+                    let user_url = `https://learn-exp-server.herokuapp.com/users/${localStorage.getItem('jsonWebTokenforLearnX')}`;
 
-                    fetch('https://api.imgbb.com/1/upload?key=32ecb8c78e2225cdf9de6d70d8cad94a', {
-                        method: 'POST',
-                        body: 
-                    }) */
+                    fetch(corsproxyurl + user_url)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        console.log('User Profile After Update: ');
+                        console.log(result);
+                    });
+                    
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
