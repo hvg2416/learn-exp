@@ -105,7 +105,7 @@ class UserProfile extends Component {
                                 .then(res => res.json())
                                 .then((result) => {
                                     console.log('Uploaded Image to IMBB API Service : ');
-                                    console.log(result);
+                                    console.log(result.data.display_url);
 
                                     let user_thumbnail_update_url = `https://learn-exp-server.herokuapp.com/users/update_user_thumbnail_url/${localStorage.getItem('jsonWebTokenforLearnX')}`;
 
