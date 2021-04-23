@@ -17,9 +17,9 @@ class Explore extends Component {
 
         let explore_fullscreenloader = document.getElementById('explore-fullscreenloader');
         explore_fullscreenloader.style.display = 'block';
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let experiences_url = "https://learn-exp-server.herokuapp.com/experiences";
-        fetch(corsproxyurl + experiences_url)
+        fetch(/*corsproxyurl + */experiences_url)
             .then((res) => res.json())
             .then((experiences) => {
                 if (experiences.length !== 0) {
