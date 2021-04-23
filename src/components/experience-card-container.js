@@ -27,7 +27,7 @@ class ExperienceCardContainer extends Component {
     }
 
     componentDidMount() {
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/experiences";
         fetch(corsproxyurl + url)
             .then((res) => res.json())
