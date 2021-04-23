@@ -24,10 +24,10 @@ class Navbar extends Component {
     componentDidMount() {
         setInterval(this.onScroll, 50);
 
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let verify_url = "https://learn-exp-server.herokuapp.com/users/verify";
 
-        fetch(corsproxyurl + verify_url, {
+        fetch(/*corsproxyurl + */verify_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ class Navbar extends Component {
 
                 let user_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
 
-                fetch(corsproxyurl + user_url)
+                fetch(/*corsproxyurl + */user_url)
                     .then(res => res.json())
                     .then((response) => {
                         this.setState({
@@ -163,10 +163,10 @@ class Navbar extends Component {
             password: password
         };
 
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/users/login";
 
-        fetch(corsproxyurl + url, {
+        fetch(/*corsproxyurl + */url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -196,10 +196,10 @@ class Navbar extends Component {
             password: password
         };
 
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/users/login";
 
-        fetch(corsproxyurl + url, {
+        fetch(/*corsproxyurl + */url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ class Navbar extends Component {
             localStorage.setItem('jsonWebTokenforLearnX', result.token);
             let user_url = 'https://learn-exp-server.herokuapp.com/users/' + localStorage.getItem('jsonWebTokenforLearnX');
 
-            fetch(corsproxyurl + user_url)
+            fetch(/*corsproxyurl + */user_url)
                 .then(res => res.json())
                 .then((response) => {
                     this.setState({
@@ -248,10 +248,10 @@ class Navbar extends Component {
             password: password
         };
 
-        let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
+//         let corsproxyurl = "https://cors-anywhere.herokuapp.com/";
         let url = "https://learn-exp-server.herokuapp.com/users/register";
 
-        fetch(corsproxyurl + url, {
+        fetch(/*corsproxyurl + */url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
